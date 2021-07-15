@@ -1,13 +1,20 @@
 "use strict";
 exports.__esModule = true;
 var express = require("express");
-// var path = require('path');
 var path = require("path");
-// const { Firestore } = require('@google-cloud/firestore');
 var firestore_1 = require("@google-cloud/firestore");
+var admin = require("firebase-admin");
 var app = express();
 var PORT = 3000;
 var progress = new Array(30);
+admin.initializeApp({
+    credential: admin.credential.cert({
+        "projectId": process.env.FIREBASE_PROJECT_ID,
+        "private_key": process.env.FIREBASE_PRIVATE_KEY,
+        "client_email": process.env.FIREBASE_CLIENT_EMAIL
+    }),
+    databaseURL: "https://commongen-69aef.firebaseio.com"
+});
 var collection = new firestore_1.Firestore().collection('progress');
 var getNewData = function () {
     return collection
