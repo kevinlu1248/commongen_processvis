@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "firebase-tools": "^9.16.0",
     "html-webpack-plugin": "^5.3.2"
   }
 }
