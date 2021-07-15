@@ -17,7 +17,7 @@ const PRIVATE_KEY: string = process.env.FIREBASE_PRIVATE_KEY!;
 admin.initializeApp({
   credential: admin.credential.cert({
     "projectId": process.env.FIREBASE_PROJECT_ID,
-    "private_key": PRIVATE_KEY,
+    "private_key": PRIVATE_KEY.replace(/\\n/g, '\n'),
     "client_email": process.env.FIREBASE_CLIENT_EMAIL,
   }),
   databaseURL: "https://commongen-69aef.firebaseio.com"

@@ -7,18 +7,18 @@ var admin = require("firebase-admin");
 var app = express();
 var PORT = 3000;
 var progress = new Array(30);
+var PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
 admin.initializeApp({
     credential: admin.credential.cert({
         "projectId": process.env.FIREBASE_PROJECT_ID,
-        "private_key": process.env.FIREBASE_PRIVATE_KEY,
+        "private_key": PRIVATE_KEY.replace(/\\n/g, '\n'),
         "client_email": process.env.FIREBASE_CLIENT_EMAIL
     }),
     databaseURL: "https://commongen-69aef.firebaseio.com"
 });
 var collection = new firestore_1.Firestore().collection('progress');
 var getNewData = function () {
-    return collection
-        .get()
+    return collection.get()
         .then(function (querySnapshot) {
         return querySnapshot.forEach(function (documentSnapshot) {
             progress[parseInt(documentSnapshot.ref.id)] = (documentSnapshot.data());
