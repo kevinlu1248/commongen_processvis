@@ -1,6 +1,4 @@
 .vscode
 node_modules
 package-lock.json
-firebase.json
-.firebaserc
 .env
