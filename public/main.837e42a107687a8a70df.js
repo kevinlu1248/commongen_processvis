@@ -1,4 +1,4 @@
-/*! For license information please see main.285c479b49b86bf267d7.js.LICENSE.txt */
+/*! For license information please see main.837e42a107687a8a70df.js.LICENSE.txt */
 (() => {
   var e = {
       679: (e, t, n) => {
@@ -34422,11 +34422,11 @@
             return (
               Nr(function () {
                 u();
-                var e = setTimeout(function () {
+                var e = setInterval(function () {
                   return u();
                 }, 6e4);
                 return function () {
-                  clearTimeout(e);
+                  clearInterval(e);
                 };
               }),
               e.createElement(

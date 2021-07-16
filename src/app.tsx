@@ -39,9 +39,9 @@ export default (props: any) => {
   };
   useEffect(() => {
     getData();
-    const timer = setTimeout(() => getData(), 60 * 1000);
+    const interval = setInterval(() => getData(), 60 * 1000);
     return () => {
-      clearTimeout(timer);
+      clearInterval(interval);
     };
   });
   return (
