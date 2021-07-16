@@ -12,16 +12,15 @@ interface ProgressItem {
 interface ProgressType extends Array<ProgressItem> {}
 let progress: ProgressType = new Array<ProgressItem>(30);
 
-const PRIVATE_KEY: string = process.env.FIREBASE_PRIVATE_KEY!;
-
-admin.initializeApp({
-  credential: admin.credential.cert({
-    "projectId": process.env.FIREBASE_PROJECT_ID!,
-    "privateKey": PRIVATE_KEY.replace(/\\n/g, '\n'),
-    "clientEmail": process.env.FIREBASE_CLIENT_EMAIL!,
-  }),
-  databaseURL: "https://commongen-69aef.firebaseio.com"
-});
+// const PRIVATE_KEY: string = process.env.FIREBASE_PRIVATE_KEY!;
+// admin.initializeApp({
+//   credential: admin.credential.cert({
+//     "projectId": process.env.FIREBASE_PROJECT_ID!,
+//     "privateKey": PRIVATE_KEY.replace(/\\n/g, '\n'),
+//     "clientEmail": process.env.FIREBASE_CLIENT_EMAIL!,
+//   }),
+//   databaseURL: "https://commongen-69aef.firebaseio.com"
+// });
 
 const collection = new Firestore().collection('progress');
 const getNewData = () =>

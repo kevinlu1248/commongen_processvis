@@ -3,19 +3,18 @@ exports.__esModule = true;
 var express = require("express");
 var path = require("path");
 var firestore_1 = require("@google-cloud/firestore");
-var admin = require("firebase-admin");
 var app = express();
 var PORT = 3000;
 var progress = new Array(30);
-var PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
-admin.initializeApp({
-    credential: admin.credential.cert({
-        "projectId": process.env.FIREBASE_PROJECT_ID,
-        "privateKey": PRIVATE_KEY.replace(/\\n/g, '\n'),
-        "clientEmail": process.env.FIREBASE_CLIENT_EMAIL
-    }),
-    databaseURL: "https://commongen-69aef.firebaseio.com"
-});
+// const PRIVATE_KEY: string = process.env.FIREBASE_PRIVATE_KEY!;
+// admin.initializeApp({
+//   credential: admin.credential.cert({
+//     "projectId": process.env.FIREBASE_PROJECT_ID!,
+//     "privateKey": PRIVATE_KEY.replace(/\\n/g, '\n'),
+//     "clientEmail": process.env.FIREBASE_CLIENT_EMAIL!,
+//   }),
+//   databaseURL: "https://commongen-69aef.firebaseio.com"
+// });
 var collection = new firestore_1.Firestore().collection('progress');
 var getNewData = function () {
     return collection.get()

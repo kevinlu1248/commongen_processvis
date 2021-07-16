@@ -20,20 +20,20 @@ for (let i = 0; i < 30; i++) {
   defaultData[i] = { done: 0, lock: 'not started' };
 }
 
-export default () => {
+export default (props: any) => {
   const [data, setData] = useState<ProgressType>(defaultData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const getData = () => {
     setIsLoading(true);
-    fetch('/progress', { method: 'POST' })
-      .then((result: any) => {
-        if (result.ok) {
-          result.json().then((obj: ProgressType) => {
-            setData(obj);
-            console.log(obj);
-            setIsLoading(false);
-          });
-        }
+    props.collectionRef
+      .get()
+      .then((querySnapshot: any) => {
+        const tmpData = defaultData;
+        querySnapshot.forEach((doc: any) => {
+          tmpData[doc.id] = doc.data();
+        });
+        setIsLoading(false);
+        setData(tmpData);
       })
       .catch(console.log);
   };
