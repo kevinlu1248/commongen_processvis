@@ -1,5 +1,6 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import App from './app';
 
 import firebase from 'firebase/app';
@@ -17,7 +18,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const collection = firebase.firestore().collection('progress');
 
-ReactDOM.render(
-  <App collectionRef={collection} />,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <App collectionRef={collection} />,
+//   document.getElementById('root')
+// );
+
+const rootElement = document.getElementById('root')!;
+if (rootElement.hasChildNodes()) {
+  hydrate(<App collectionRef={collection} />, rootElement);
+} else {
+  render(<App collectionRef={collection} />, rootElement);
+}
